@@ -8,7 +8,8 @@ from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson, Subscription
 from lms.paginators import LMSPagination
-from lms.serializers import CourseSerializer, LessonSerializer, SubscriptionSerializer
+from lms.serializers import (CourseSerializer, LessonSerializer,
+                             SubscriptionSerializer)
 from users.permissions import IsModerator, IsOwner
 
 

@@ -81,13 +81,17 @@ class Subscription(models.Model):
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="Пользователь",
-        help_text="Выберите пользователя", )
+        help_text="Выберите пользователя",
+    )
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
         verbose_name="Курс",
-        help_text="Выберите курс", )
-    is_subscribed = models.BooleanField(default=False, verbose_name="Состояние подписки", help_text="Подписан?")
+        help_text="Выберите курс",
+    )
+    is_subscribed = models.BooleanField(
+        default=False, verbose_name="Состояние подписки", help_text="Подписан?"
+    )
 
     def __str__(self):
         return f"{self.user} {['не подписан', 'подписан'][self.is_subscribed]} на курс {self.course}"

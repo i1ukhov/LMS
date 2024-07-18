@@ -2,7 +2,6 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from lms.models import Course, Lesson, Subscription
 from lms.validators import LinkValidator
-from users.models import User
 
 
 class LessonSerializer(ModelSerializer):

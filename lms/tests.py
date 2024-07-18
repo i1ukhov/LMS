@@ -52,7 +52,6 @@ class LessonTestCase(APITestCase):
             "name": "Test2",
         }
         response = self.client.patch(url, data)
-        temp_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get("name"), "Test2")
         self.assertEqual(response.data.get("course"), self.course.pk)

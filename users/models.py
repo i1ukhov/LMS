@@ -61,6 +61,10 @@ class Payment(models.Model):
         verbose_name="Способ оплаты",
         help_text="Выберите способ оплаты",
     )
+    session_id = models.CharField(max_length=255, verbose_name="ID сессии", **NULLABLE)
+    payment_link = models.URLField(
+        max_length=400, verbose_name="Cсылка на оплату", **NULLABLE
+    )
 
     def __str__(self):
         return f"Платеж {self.pk} от {self.payment_date} на сумму {self.amount}. Метод оплаты: {self.payment_method}"

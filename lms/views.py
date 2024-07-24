@@ -10,6 +10,7 @@ from lms.models import Course, Lesson, Subscription
 from lms.paginators import LMSPagination
 from lms.serializers import (CourseSerializer, LessonSerializer,
                              SubscriptionSerializer)
+from lms.tasks import send_course_update_mail
 from users.permissions import IsModerator, IsOwner
 
 
@@ -29,6 +30,11 @@ class CourseViewSet(ModelViewSet):
         elif self.action == "destroy":
             self.permission_classes = (IsOwner,)
         return super().get_permissions()
+
+    def perform_update(self, serializer):
+        course = serializer.save()
+        course_id = course.id
+        send_course_update_mail.delay(course_id)
 
 
 class LessonCreateAPIView(CreateAPIView):
@@ -79,6 +85,6 @@ class SubscriptionCreateAPIView(APIView):
             subs_item.delete()
             message = "Подписка удалена"
         else:
-            Subscription.objects.create(user=user, course=course)
+            Subscription.objects.create(user=user, course=course, is_subscribed=True)
             message = "Подписка добавлена"
         return Response({"message": message})

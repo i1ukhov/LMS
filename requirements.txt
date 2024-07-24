@@ -13,3 +13,7 @@ djangorestframework-simplejwt==5.3.1
 coverage
 drf-yasg
 stripe
+celery==5.4.0
+redis==5.0.6
+django-celery-beat==2.6.0
+eventlet==0.36.1

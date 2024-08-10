@@ -54,7 +54,7 @@ class Payment(models.Model):
     amount = models.PositiveIntegerField(
         verbose_name="Сумма платежа", help_text="Укажите сумму платежа"
     )
-    payment_method_choises = {"cash": "наличные", "transfer": "перевод на счёт"}
+    payment_method_choises = [("cash", "наличные"), ("transfer", "перевод на счёт")]
     payment_method = models.CharField(
         max_length=25,
         choices=payment_method_choises,
